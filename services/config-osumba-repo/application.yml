@@ -1,0 +1,27 @@
+global:
+  params:
+    p1: 22
+    p2: 33
+
+spring:
+  h2:
+    console:
+      enabled: true
+  cloud:
+    config:
+      enabled: true
+    discovery:
+      enabled: true
+  eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+      service-url:
+        defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka}
+
+# Ativar todos os endpoints do Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

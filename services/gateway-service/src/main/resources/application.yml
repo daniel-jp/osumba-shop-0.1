@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: gateway-service
+  config:
+    import: "optional:configserver:${CONFIG_SERVICE_URL:http://localhost:9999}"
+
+server:
+  port: 8888
+
+# Commented out sections for reference:
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#   client:
+#     service-url:
+#       defaultZone: "http://localhost:8761/eureka"

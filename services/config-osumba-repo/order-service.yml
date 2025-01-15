@@ -1,0 +1,7 @@
+order:
+  params:
+    a: 7
+    b: 8
+spring:
+  datasource:
+    url: jdbc:h2:mem:order_db
