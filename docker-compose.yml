@@ -1,0 +1,96 @@
+services:
+  sys-shop-osumba-discovery-service:
+    build: ./discovery-service
+    container_name: sys-shop-osumba-discovery-service
+    ports:
+      - '8761:8761'
+    expose:
+      - '8761'
+    healthcheck:
+      test: ["CMD","curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      #timeout: 5s
+      retries: 4
+      #start_period: 40s
+
+  sys-shop-osumba-config-service:
+    build: ./config-service
+    container_name: sys-shop-osumba-config-service
+    ports:
+      - '9999:9999'
+    expose:
+      - '9999'
+    environment:
+      - DISCOVERY_SERVICE_URL=http://sys-shop-osumba-discovery-service:8761/eureka
+    healthcheck:
+      test: [ "CMD","curl", "-f", "http://localhost:9999/actuator/health" ]
+      interval: 10s
+      #timeout: 5s
+      retries: 4
+      #start_period: 40s
+
+    depends_on:
+      sys-shop-osumba-discovery-service:
+        condition: service_healthy
+
+########################################---DATA MICRO-SERVICES---########################################
+  sys-shop-osumba-user-service:
+    build: ./user-service
+    container_name: sys-shop-osumba-user-service
+    ports:
+      - '8081:8081'
+    expose:
+      - '8081'
+    environment:
+      - DISCOVERY_SERVICE_URL=http://sys-shop-osumba-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://sys-shop-osumba-config-service:9999
+    healthcheck:
+      test: [ "CMD","curl", "-f", "http://localhost:8081/actuator/health" ]
+      interval: 10s
+      #timeout: 5s
+      retries: 4
+      #start_period: 40s
+    depends_on:
+      sys-shop-osumba-config-service:
+        condition: service_healthy
+
+  sys-shop-osumba-order-service:
+    build: ./order-service
+    container_name: sys-shop-osumba-order-service
+    ports:
+      - '8082:8082'
+    expose:
+      - '8082'
+    environment:
+      - DISCOVERY_SERVICE_URL=http://sys-shop-osumba-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://sys-shop-osumba-config-service:9999
+
+    depends_on:
+      sys-shop-osumba-user-service:
+        condition: service_healthy
+
+
+
+  sys-shop-osumba-gateway-service:
+    build: ./gateway-service
+    container_name: sys-shop-osumba-gateway-service
+    ports:
+      - '8888:8888'
+    expose:
+      - '8888'
+    environment:
+      - DISCOVERY_SERVICE_URL=http://sys-shop-osumba-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://sys-shop-osumba-config-service:9999
+
+    depends_on:
+      sys-shop-osumba-config-service:
+        condition: service_healthy
+
+
+
+
+
+
+
+
+

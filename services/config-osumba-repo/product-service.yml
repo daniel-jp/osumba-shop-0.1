@@ -1,0 +1,7 @@
+product:
+  params:
+    a: 5
+    b: 6
+spring:
+  datasource:
+    url: jdbc:h2:mem:product_db

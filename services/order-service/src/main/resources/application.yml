@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:h2:mem:order_category_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create # Ou "create-drop" se desejar recriar o banco a cada inicializa��o
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  cloud:
+    config:
+      enabled: false
+    discovery:
+      enabled: false
+
+server:
+    port: 8082

@@ -1,0 +1,7 @@
+payment:
+  params:
+    a: 9
+    b: 10
+spring:
+  datasource:
+    url: jdbc:h2:mem:payment_db
