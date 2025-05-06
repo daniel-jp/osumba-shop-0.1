@@ -17,7 +17,7 @@ import java.util.Date;
 
 @ControllerAdvice
 @RestController
-public class OsumbaEntityResponseExceptionHandler extends ResponseEntityExceptionHandler {
+public class OsumbaResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ExceptionResponse> handleAllExceptions(

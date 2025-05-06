@@ -9,6 +9,7 @@ import com.osumba.order_service.mapper.OrderItemMapper;
 import com.osumba.order_service.repository.OrderItemRepository;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,13 +22,13 @@ public class OrderItemService {
     @Autowired
     private  OrderItemMapper mapper;
 
-    public Long saveOrderLine(OrderItemRequest request) {
+    public UUID saveOrderLine(OrderItemRequest request) {
 
         var order = mapper.toOrderLine(request);
         return orderItemRepository.save(order).getId();
     }
 
-    public List<OrderItemResponse> findAllByOrderId(Long orderId) {
+    public List<OrderItemResponse> findAllByOrderId(UUID orderId) {
 
         return orderItemRepository.findAllByOrderId(orderId)
                 .stream()

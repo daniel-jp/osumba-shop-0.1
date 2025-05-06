@@ -1,6 +1,7 @@
 package com.osumba.order_service.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class OrderController {
   }
 
   @GetMapping("/{order-id}")
-  public ResponseEntity<OrderResponse> findById(@PathVariable("order-id") Long orderId) {
+  public ResponseEntity<OrderResponse> findById(@PathVariable("order-id") UUID orderId) {
     return ResponseEntity.ok(this.service.findById(orderId));
   }
 }

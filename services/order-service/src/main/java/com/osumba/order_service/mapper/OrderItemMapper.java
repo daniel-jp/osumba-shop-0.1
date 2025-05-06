@@ -13,12 +13,12 @@ public class OrderItemMapper {
 
         return OrderItem.builder()
                 .id(request.orderId())
-               /* .productId(request.productId())
+               /* .productId(request.productId()) */
                 .order(
                         Order.builder()
                                 .id(request.orderId())
                                 .build()
-                )*/
+                )
                 .quantity(request.quantity())
                 .order(Order.builder()
                                 .id(request.orderId()).build())

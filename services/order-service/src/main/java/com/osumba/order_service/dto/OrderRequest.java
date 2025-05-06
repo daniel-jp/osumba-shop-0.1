@@ -9,10 +9,11 @@ import com.osumba.order_service.enums.PaymentMethod;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @JsonInclude(Include.NON_EMPTY)
 public record OrderRequest(
-    Long id,
+    UUID id,
     String reference,
     @Positive(message = "Order amount should be positive")
     BigDecimal amount,

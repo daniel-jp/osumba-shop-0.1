@@ -2,6 +2,9 @@ package com.osumba.order_service.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -11,7 +14,7 @@ import lombok.*;
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private int quantity;
 
     @ManyToOne

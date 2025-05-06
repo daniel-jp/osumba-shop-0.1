@@ -12,6 +12,7 @@ import com.osumba.order_service.dto.OrderItemResponse;
 import com.osumba.order_service.service.OrderItemService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/order-items")
@@ -22,7 +23,7 @@ public class OrderItemController {
 
 
     @GetMapping("/{order-id}")
-    public ResponseEntity<List<OrderItemResponse>> findByOrderId(@PathVariable("order-id") Long orderId) {
+    public ResponseEntity<List<OrderItemResponse>> findByOrderId(@PathVariable("order-id") UUID orderId) {
         return ResponseEntity.ok(orderItemService.findAllByOrderId(orderId));
     }
 }

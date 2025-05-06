@@ -12,7 +12,6 @@ public record AddressRecord(
          String country,
          String state,
          String city,
-
          String street,
          String immNumber,
          String houseNumber,

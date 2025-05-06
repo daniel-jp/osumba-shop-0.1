@@ -9,8 +9,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.osumba.order_service.enums.OrderStatus;
 import com.osumba.order_service.enums.PaymentMethod;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -22,9 +26,9 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
     private String reference;
-    private double totalAmount;
+    private BigDecimal totalAmount;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -33,6 +37,7 @@ public class Order {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime lastModifiedDate;
+    private LocalDateTime deliveredDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;

@@ -19,6 +19,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import java.math.BigDecimal;
 import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -54,7 +55,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 			Order order1 = orderRepository.save(
 					Order.builder()
 							.reference("ord324")
-							.totalAmount(Math.random() * 233)
+							.totalAmount(BigDecimal.valueOf(Math.random()  * 233))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.PROCESSING)
@@ -65,7 +66,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 			Order order2 = orderRepository.save(
 					Order.builder()
 							.reference("ord325")
-							.totalAmount(Math.random() * 433)
+							.totalAmount(BigDecimal.valueOf(Math.random()  * 433))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.DELIVERED)
@@ -76,7 +77,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 			Order order3 = orderRepository.save(
 					Order.builder()
 							.reference("ord443")
-							.totalAmount(Math.random() * 433)
+							.totalAmount(BigDecimal.valueOf(Math.random()  * 433))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.CANCELED)

@@ -6,12 +6,13 @@ import com.osumba.order_service.enums.OrderStatus;
 import com.osumba.order_service.enums.PaymentMethod;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @JsonInclude(Include.NON_EMPTY)
 public record OrderResponse(
-    Long id,
+    UUID id,
     String reference,
-    double amount,
+    BigDecimal amount,
     OrderStatus orderStatus,
     PaymentMethod paymentMethod) {
 

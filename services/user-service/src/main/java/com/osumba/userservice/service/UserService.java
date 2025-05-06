@@ -40,8 +40,6 @@ public class UserService {
 
     private void mergerUser(User user, UserRequest request) {
 
-
-
         if (StringUtils.isNotBlank(request.firstName())){
             user.setFirstName(request.firstName());
         }
