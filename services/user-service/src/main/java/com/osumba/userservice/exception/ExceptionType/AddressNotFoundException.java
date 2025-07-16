@@ -1,4 +1,4 @@
-package com.osumba.userservice.exception;
+package com.osumba.userservice.exception.ExceptionType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,5 +8,7 @@ import lombok.EqualsAndHashCode;
 @Data
 public class AddressNotFoundException extends RuntimeException {
 
-    private final String msg;
+    public AddressNotFoundException(String message) {
+        super(message);
+    }
 }

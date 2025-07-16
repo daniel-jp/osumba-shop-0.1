@@ -4,6 +4,8 @@ import com.osumba.userservice.entity.Address;
 import com.osumba.userservice.enumer.UserRole;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.UUID;

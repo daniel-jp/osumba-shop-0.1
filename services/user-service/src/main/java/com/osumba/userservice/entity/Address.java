@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String country;
     private String state;

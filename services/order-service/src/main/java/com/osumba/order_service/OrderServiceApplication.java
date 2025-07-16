@@ -36,11 +36,6 @@ public class OrderServiceApplication implements CommandLineRunner {
 	}
 
 
-
-	/**
-	 * @param args
-	 * @throws Exception
-	 */
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -58,6 +53,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 							.totalAmount(BigDecimal.valueOf(Math.random()  * 233))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
+							.deliveredDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.PROCESSING)
 							.paymentMethod(PaymentMethod.BANK_TRANSFER)
 							.build()
@@ -69,6 +65,7 @@ public class OrderServiceApplication implements CommandLineRunner {
 							.totalAmount(BigDecimal.valueOf(Math.random()  * 433))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
+							.deliveredDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.DELIVERED)
 							.paymentMethod(PaymentMethod.VISA)
 							.build()
@@ -80,20 +77,22 @@ public class OrderServiceApplication implements CommandLineRunner {
 							.totalAmount(BigDecimal.valueOf(Math.random()  * 433))
 							.createDate(LocalDateTime.now())
 							.lastModifiedDate(LocalDateTime.now())
+							.deliveredDate(LocalDateTime.now())
 							.orderStatus(OrderStatus.CANCELED)
 							.paymentMethod(PaymentMethod.MASTER_CARD)
 							.build()
 			);
 
 			// Criar e associar OrderItems
-			OrderItem item1 = OrderItem.builder().quantity(4).order(order1).build();
-			OrderItem item2 = OrderItem.builder().quantity(2).order(order1).build();
-			OrderItem item3 = OrderItem.builder().quantity(12).order(order2).build();
-			OrderItem item4 = OrderItem.builder().quantity(33).order(order2).build();
-			OrderItem item5 = OrderItem.builder().quantity(51).order(order3).build();
+			List<OrderItem> items = List.of(
+					OrderItem.builder().quantity(4).order(order1).build(),
+					OrderItem.builder().quantity(2).order(order1).build(),
+					OrderItem.builder().quantity(12).order(order2).build(),
+					OrderItem.builder().quantity(33).order(order2).build(),
+					OrderItem.builder().quantity(51).order(order3).build()
+			);
 
-
-			orderItemRepository.saveAll(List.of(item1, item2, item3, item4,item5));
+			orderItemRepository.saveAll(items);
 		};
 	}
 }

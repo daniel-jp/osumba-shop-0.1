@@ -2,6 +2,7 @@ package com.osumba.userservice.controller;
 
 import com.osumba.userservice.dto.UserRecord;
 import com.osumba.userservice.dto.UserRequest;
+import com.osumba.userservice.entity.User;
 import com.osumba.userservice.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UUID> createUser(@RequestBody @Valid UserRequest request){
-        return   ResponseEntity.ok(userService.createUser(request));
+    public ResponseEntity<String> createUser(@RequestBody @Valid UserRequest request){
+        return   ResponseEntity.ok("User with ID :[ "+userService.createUser(request)+" ] Well added successful ✅");
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateUSer(@RequestBody @Valid UserRequest request ){
-        userService.updateUser(request);
-        return ResponseEntity.accepted().build();
+    @PutMapping(path = "/{user-id}")
+    public ResponseEntity<String> updateUSer(@PathVariable("user-id") UUID userId, @RequestBody @Valid UserRequest request ){
+
+        userService.updateUser(userId, request);
+        return ResponseEntity.ok("Usr with ID: [ "+userId+" ] Updated successful ✅");
     }
 
 
@@ -34,6 +36,9 @@ public class UserController {
         return ResponseEntity.ok(userService.findAllUser());
     }
 
+
+
+    // TIS CODE IS TO TEST IF THE USER IS PRESENT DATABASE. IF PRSENTE RETURN TRUE
     @GetMapping("/exist/{customer-id}")
     public ResponseEntity<Boolean> existsById(
             @PathVariable("customer-id") UUID userId){
@@ -46,11 +51,12 @@ public class UserController {
         return ResponseEntity.ok(userService.findUserById(userId)) ;
     }
 
-    @GetMapping("/delete-user/{customer-id}")
-    public ResponseEntity<Void> deleteUserById(
+    @DeleteMapping("/delete-user/{customer-id}")
+    public ResponseEntity<String> deleteUserById(
             @PathVariable("customer-id") UUID userId){
         userService.deleteUserById(userId);
-        return ResponseEntity.accepted().build();
+        //return ResponseEntity.accepted().build();
+        return ResponseEntity.ok("User deleted successful ✅");
     }
 
 

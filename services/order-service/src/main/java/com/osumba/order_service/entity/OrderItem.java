@@ -13,10 +13,9 @@ import java.util.UUID;
 @Builder
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private int quantity;
-
     @ManyToOne
     @JoinColumn(name = "order_id") // Nome correto da coluna
     private Order order; // Corrigindo de "orders" para "order"

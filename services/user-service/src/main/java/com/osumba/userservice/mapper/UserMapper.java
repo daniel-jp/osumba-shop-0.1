@@ -7,6 +7,7 @@ import com.osumba.userservice.enumer.UserRole;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class UserMapper {
@@ -22,17 +23,16 @@ public class UserMapper {
                 .lastName(request.lastName())
                 .email(request.email())
                 .password(request.password())
-                .birthDate(new Date("10/09/1992"))
+                .birthDate(new Date())
                 .userRole(UserRole.CUSTOMER)
                 .isActive(true)
                 .build();
     }
 
     public UserRecord fromUser(User user) {
-
         return new UserRecord(
                 user.getId(),
-                user.getLastName(),
+                user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
                 user.getPassword(),
@@ -41,4 +41,5 @@ public class UserMapper {
                 user.isActive()
         );
     }
+
 }

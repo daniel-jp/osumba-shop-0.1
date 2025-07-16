@@ -3,6 +3,7 @@ package com.osumba.userservice.mapper;
 import com.osumba.userservice.dto.AddressRecord;
 import com.osumba.userservice.dto.AddressRequest;
 import com.osumba.userservice.entity.Address;
+import com.osumba.userservice.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,7 @@ public class AddressMapper {
                 .immNumber(request.immNumber())
                 .houseNumber(request.houseNumber())
                 .zipCode(request.zipCode())
+                .user(request.user())
                 .build();
     }
 

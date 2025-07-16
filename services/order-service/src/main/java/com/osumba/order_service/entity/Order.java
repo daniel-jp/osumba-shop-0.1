@@ -1,5 +1,6 @@
 package com.osumba.order_service.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,6 @@ import com.osumba.order_service.enums.PaymentMethod;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,31 +25,32 @@ import java.util.UUID;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String reference;
     private BigDecimal totalAmount;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
+    @JsonFormat(pattern = "dd/MM/yy HH:mm:ss")
     private LocalDateTime createDate;
-
     @LastModifiedDate
     @Column(nullable = false)
+    @JsonFormat(pattern = "dd/MM/yy HH:mm:ss")
     private LocalDateTime lastModifiedDate;
+    @JsonFormat(pattern = "dd/MM/yy HH:mm:ss")
     private LocalDateTime deliveredDate;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
-
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-
     @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // Corrigido de "orders" para "order"
     private List<OrderItem> orderItems;
 
-    public void addItem(OrderItem item) {
-        orderItems.add(item);
-    }
+
+    //public void addItem(OrderItem item) {
+     //   orderItems.add(item);
+    //}
 }

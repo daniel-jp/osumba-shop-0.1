@@ -6,12 +6,13 @@ import com.osumba.payment_service.enums.PaymentStatus;
 import java.math.BigDecimal;
 
 public record PaymentNotificationRequest(
-        String orderReference,
+        //String orderReference,
         BigDecimal amount,
         PaymentMethod paymentMethod,
-        PaymentStatus paymentStatus,
-        String userFirstname,
-        String userLastname,
-        String userEmail
+        PaymentStatus paymentStatus
+
+        //String customerFirstname,
+        //String customerLastname,
+        //String customerEmail
 ) {
 }

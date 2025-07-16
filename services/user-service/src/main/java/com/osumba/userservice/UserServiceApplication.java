@@ -35,7 +35,7 @@ public class UserServiceApplication implements CommandLineRunner {
 					.email("daniel@gmail.com")
 					.password("admin")
 					.userRole(UserRole.ADMIN)
-					.birthDate(new Date("10/09/1999"))
+					.birthDate(new Date())
 					.isActive(true)
 					.build();
 
@@ -45,11 +45,12 @@ public class UserServiceApplication implements CommandLineRunner {
 					.email("armando@gmail.com")
 					.password("user")
 					.userRole(UserRole.CUSTOMER)
-					.birthDate(new Date("10/09/1993"))
+					.birthDate(new Date())
 					.isActive(true) // Mesmo endereço associado
 					.build();
 
 			userRepository.saveAll(List.of(user1, user2));
+
 
 			Address address1 = Address.builder()
 					.country("Angola")

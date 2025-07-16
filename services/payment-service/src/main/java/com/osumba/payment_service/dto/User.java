@@ -4,9 +4,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.UUID;
+
 public record User(
 
-         Long id,
+         UUID id,
          @NotNull(message = "FirstName is required")
          String firstName,
          @NotNull(message = "LastName is required")

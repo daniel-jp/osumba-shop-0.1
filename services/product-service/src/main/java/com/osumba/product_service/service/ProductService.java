@@ -61,6 +61,7 @@ public class ProductService {
                 .stream()
                 .map(ProductPurchaseRequest::productId)
                 .toList();
+
         List<Product> storedProducts = repository.findAllByIdInOrderById(productIds);
 
 
@@ -73,6 +74,7 @@ public class ProductService {
                 .stream()
                 .sorted(Comparator.comparing(ProductPurchaseRequest::productId))
                 .toList();
+
         var purchasedProducts = new ArrayList<ProductPurchaseResponse>();
 
         for (int i = 0; i < storedProducts.size(); i++) {

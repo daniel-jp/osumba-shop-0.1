@@ -17,8 +17,7 @@ public class OrderItemMapper {
                 .order(
                         Order.builder()
                                 .id(request.orderId())
-                                .build()
-                )
+                                .build())
                 .quantity(request.quantity())
                 .order(Order.builder()
                                 .id(request.orderId()).build())

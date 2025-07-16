@@ -24,14 +24,14 @@ public class OrderController {
   private final OrderService service;
 
   @PostMapping
-  public ResponseEntity<String> createOrder(
-      @RequestBody @Valid OrderRequest request) {
+  public ResponseEntity<String> createOrder(@RequestBody @Valid OrderRequest request ) {
     this.service.createOrder(request);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok().body("Order created ✅");
   }
 
   @GetMapping
   public ResponseEntity<List<OrderResponse>> findAll() {
+
     return ResponseEntity.ok(this.service.findAllOrders());
   }
 

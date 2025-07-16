@@ -2,6 +2,8 @@ package com.osumba.userservice.controller;
 
 import com.osumba.userservice.dto.AddressRecord;
 import com.osumba.userservice.dto.AddressRequest;
+import com.osumba.userservice.entity.Address;
+import com.osumba.userservice.repository.UserRepository;
 import com.osumba.userservice.service.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,20 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+
     @PostMapping
     public ResponseEntity<String> createAddress(@RequestBody @Valid AddressRequest request){
-        return   ResponseEntity.ok(addressService.createAddress(request));
+
+         addressService.createAddress(request);
+        return   ResponseEntity.ok("Address created successful ✅");
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateUSer(@RequestBody @Valid AddressRequest request ){
-        addressService.updateAddress(request);
-        return ResponseEntity.accepted().build();
+    @PutMapping(path = "/{address-id}")
+    public ResponseEntity<String> updateAddress(
+            @PathVariable("address-id")UUID addressId,
+            @RequestBody @Valid AddressRequest request   ){
+        addressService.updateAddress(addressId, request);
+        return ResponseEntity.ok("Address number : "+request.immNumber()+" Updated successful ✅");
     }
 
 
@@ -48,11 +55,11 @@ public class AddressController {
         return ResponseEntity.ok(addressService.findAddressById(addressId)) ;
     }
 
-    @GetMapping("/delete-address/{address-id}")
-    public ResponseEntity<Void> deleteAddressById(
+    @DeleteMapping("/delete-address/{address-id}")
+    public ResponseEntity<String> deleteAddressById(
             @PathVariable("address-id") UUID addressId){
         addressService.deleteAddressById(addressId);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.ok("Address Deleted successful  ✅");
     }
 
 

@@ -2,8 +2,10 @@ package com.osumba.userservice.dto;
 
 import com.osumba.userservice.entity.User;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
 import java.util.UUID;
+
 
 public record AddressRequest(
 
