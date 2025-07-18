@@ -29,17 +29,15 @@ public class AddressController {
     }
 
     @PutMapping(path = "/{address-id}")
-    public ResponseEntity<String> updateAddress(
-            @PathVariable("address-id")UUID addressId,
-            @RequestBody @Valid AddressRequest request   ){
+    public ResponseEntity<String> updateAddress( @PathVariable("address-id")UUID addressId, @RequestBody @Valid AddressRequest request){
+
         addressService.updateAddress(addressId, request);
-        return ResponseEntity.ok("Address number : "+request.immNumber()+" Updated successful ✅");
+        return ResponseEntity.ok("Address number: "+request.immNumber()+" Updated successful ✅");
     }
 
 
     @GetMapping
     public ResponseEntity<List<AddressRecord>> findAll(){
-
         return ResponseEntity.ok(addressService.findAllAddress());
     }
 

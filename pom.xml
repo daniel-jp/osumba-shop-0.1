@@ -11,6 +11,7 @@
 	<groupId>com.osumba-shop</groupId>
 	<artifactId>2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>osumba-sop-0.1</name>
 	<description>FullStack project of sales several products</description>
 	<url/>
@@ -20,6 +21,9 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>new-service</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>

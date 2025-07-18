@@ -49,6 +49,7 @@ public class AddressService implements ImpAddress {
 
         if (!optionalUser.isPresent()){
             throw new UserNotFoundException("The given user ID "+request.user().getId()+" is not exist");
+
         }
         var address = this.addressRepository.save(addressMapper.toAddress(request));
         return address.getId();
@@ -81,15 +82,21 @@ public class AddressService implements ImpAddress {
 
         }
     */
+
     @Override
     public Address updateAddress(UUID addressId, AddressRequest request) {
 
         Optional<Address> address = addressRepository.findById(addressId);
+        Optional<User> optionalUser = this.userRepository.findById(request.user().getId());
+
 
         if (address.isEmpty()){
             throw new AddressNotFoundException("The given Address ID:"+addressId+" does not exist !");
         }
+        if (!optionalUser.isPresent()){
+            throw new UserNotFoundException("The given user ID "+request.user().getId()+" is not exist");
 
+        }
 
         Address address1 = address.get();
         mergerAddress(address1, request);

@@ -8,11 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="product-service" />
-        <module name="2" />
         <module name="config-service" />
         <module name="user-service" />
         <module name="discovery-service" />
         <module name="gateway-service" />
+      </profile>
+      <profile name="Annotation profile for card-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="card-service" />
       </profile>
       <profile name="Annotation profile for shoppingCart" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -26,20 +34,11 @@
         <module name="order-service" />
         <module name="notification-service" />
       </profile>
-      <profile name="Annotation profile for card-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-        </processorPath>
-        <module name="card-service" />
-      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="2" options="-parameters" />
+      <module name="2" options="" />
       <module name="card-service" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
